@@ -118,6 +118,14 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
+// Get the input field ( For Pressing Enter)
+const input = document.getElementById("search");
+input.addEventListener("keypress", function(event) {
+  if (event.key =='Enter') {
+    document.getElementById("search-btn").click();
+  }
+});
+
 sliderBtn.addEventListener('click', function () {
   createSlider()
 
