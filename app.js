@@ -25,17 +25,13 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
-
-
 }
-
 
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
-   // .catch(err => console.log(err))
-    .catch(err => console.log("Select Images"))
+   .catch(err => console.log(err))
 
 }
 
@@ -72,11 +68,6 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   const duration = document.getElementById('sliders').value || 1000 ;
-  if(duration<0 || duration==0){
-    alert("You can't put a Negative or Zero Value .")
-  }
-  else{
-
     sliders.forEach(slide => {
       let item = document.createElement('div')
       item.className = "slider-item";
@@ -85,14 +76,15 @@ const createSlider = () => {
       alt="">`;
       sliderContainer.appendChild(item)
     })
-  }
+
   changeSlide(0)
   timer = setInterval(function () {
     slideIndex++;
     changeSlide(slideIndex);
   }, duration);
-  
+   
 }
+
 
 
 
