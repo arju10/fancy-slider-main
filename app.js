@@ -26,7 +26,9 @@ const showImages = (images) => {
     gallery.appendChild(div)
   })
 
+
 }
+
 
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
@@ -38,15 +40,14 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
- 
+  element.classList.toggle('added');
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-  } else {
-    alert('Hey, Already added !')
-  }
+  } 
 }
+
 var timer
 const createSlider = () => {
   // check slider image length
@@ -54,7 +55,7 @@ const createSlider = () => {
     alert('Select at least 2 image.')
     return;
   }
- 
+
   // crate slider previous next area
   sliderContainer.innerHTML = '';
   const prevNext = document.createElement('div');
@@ -82,7 +83,10 @@ const createSlider = () => {
     slideIndex++;
     changeSlide(slideIndex);
   }, duration);
+
 }
+
+
 
 // change slider index 
 const changeItem = index => {
@@ -120,8 +124,8 @@ searchBtn.addEventListener('click', function () {
 
 // Get the input field ( For Pressing Enter)
 const input = document.getElementById("search");
-input.addEventListener("keypress", function(event) {
-  if (event.key =='Enter') {
+input.addEventListener("keypress", function (event) {
+  if (event.key == 'Enter') {
     document.getElementById("search-btn").click();
   }
 });
@@ -130,3 +134,9 @@ sliderBtn.addEventListener('click', function () {
   createSlider()
 
 })
+
+//Toggle spinner
+const toggleSpinner = () => {
+  spinner = document.getElementById('loading-spinner');
+  spinner.classList.toggle('d-none');
+}
